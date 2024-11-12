@@ -260,3 +260,11 @@ const NickName;
 ```
 
 - 상수 명명법
+```
+이런 규칙은 없습니다.
+암묵적으로 상수를 만들때는 대문자만 씁니다.
+
+const PI = 3.14;
+const APP_NAME = "TODO";
+
+```
