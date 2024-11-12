@@ -426,3 +426,122 @@ var, function 함수명() {}
 위의 2가지는 hoisting이 된다.
 좋지 않다. 라고 생각해서 권장하지 않는다.
 ```
+
+## 7. number 알아보기
+
+```js
+const num_1 = 5;
+const num_2 = 5.4;
+const num_3 = Infinity;
+const num_4 = -Infinity;
+const num_5 = NaN;
+console.log(typeof num_1);
+console.log(num_3);
+console.log(num_4);
+```
+
+## 8. string 알아보기
+
+```js
+const str_1 = "안녕하세요.";
+const str_2 = "안";
+const str_3 = `반가워`;
+
+const age = 10;
+const city = "대구";
+const message = `나는 ${city}에 살고 ${age}살입니다`;
+
+console.log(typeof str_1);
+console.log(str_3);
+console.log(typeof str_3);
+console.log(message);
+```
+
+## 9. boolean 알아보기
+
+```js
+const isMember = false;
+console.log(typeof isMember, isMember);
+
+const isLogin = true;
+console.log(typeof isLogin, isLogin);
+// =============================
+const isNow = "12시";
+console.log("12시", typeof isNow, isNow);
+if (isNow) {
+  console.log("true 입니다.");
+} else {
+  console.log("false 입니다.");
+}
+
+const isPlay = 100;
+console.log(typeof isPlay, isPlay);
+if (isPlay) {
+  console.log("isPlay true 입니다.");
+} else {
+  console.log("isPlay false 입니다.");
+}
+
+const isPoint = 0;
+console.log(typeof isPoint, isPoint);
+if (isPoint) {
+  console.log("isPoint true 입니다.");
+} else {
+  console.log("isPoint false 입니다.");
+}
+
+const isTeam = "";
+console.log(typeof isTeam, isTeam);
+if (isTeam) {
+  console.log("isTeam true 입니다.");
+} else {
+  console.log("isTeam false 입니다.");
+}
+
+const isItems = [];
+console.log(typeof isItems, isItems);
+if (isItems) {
+  console.log("isItems true 입니다.");
+} else {
+  console.log("isItems false 입니다.");
+}
+
+const isInfo = {};
+console.log(typeof isInfo, isInfo);
+if (isInfo) {
+  console.log("isInfo true 입니다.");
+} else {
+  console.log("isInfo false 입니다.");
+}
+
+const isUn = undefined;
+console.log(typeof isUn, isUn);
+if (isUn) {
+  console.log("isUn true 입니다.");
+} else {
+  console.log("isUn false 입니다.");
+}
+
+const isN = null;
+console.log(typeof isN, isN);
+if (isN) {
+  console.log("isN true 입니다.");
+} else {
+  console.log("isN false 입니다.");
+}
+```
+
+### 9.1. 우리는 falshy 한 데이터를 알아야 한다.
+
+- truthy 참스러운 데이터
+- flashy 거짓스러운 데이터
+- 어떤 경우를 false 로 판단하는가?
+
+```
+    false
+    ""
+    0
+    null
+    undefined
+    NaN
+```
