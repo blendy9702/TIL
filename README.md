@@ -69,3 +69,82 @@ console.log(now);
 ### 2.2. 화살표 함수 만들기
 - 화살표 함수는 상수 만들듯이 생성한다.
 - const 를 활용한다.
+- 이름을 `동사`로 만든다.
+- `값으로 함수`를 작성한다.
+- 함수는 `익명함수`로 한다.
+- function 을 없애소 화살표( => )로 표현한다.
+
+### 2.3. 화살표 함수 사용하기
+- `이름();` 실행됨.
+- 주의 사항은 `호이스팅이 안된다`.
+
+### 2.4. 여러가지 화살표 함수의 예
+
+```js
+// 파라메터가 없는 경우는 ()를 반드시 입력.
+function say() {
+  console.log("안녕");
+}
+const sayArrow = () => {
+  console.log("안녕");
+};
+// 파라메터가 한개 있는 경우 () 생략 가능
+function sayWord(word) {
+  console.log(word);
+}
+const sayWordArrow = (word) => {
+  console.log(word);
+};
+// 파라메터가 두개 이상인 경우 () 를 필수로 입력.
+function sayWordText(word, text) {
+  console.log(word, text);
+}
+const sayWordTextArrow = (word, text) => {
+  console.log(word, text);
+};
+
+// 파라메터가 없고 함수 결과를 리턴하지 않는 경우
+function noReturn() {}
+const noReturnArrow = () => {};
+// 파라메터가 없고 함수 결과를 리턴하는 경우
+function yesReturn() {
+  return 1;
+}
+// return 코드에 딱 1줄 코딩 작성됨.
+const yesReturnArrow = () => {
+  return 1;
+};
+// return 코드에 딱 1줄 코딩 작성됨. 중괄호 생략 가능
+const yesReturnArrowOne = () => 1;
+
+// return 샘플 코드 1줄 짜리 예제
+
+const isLogin = true; // 로그인 상태를 저장함.
+
+// if 문 여러 줄 코드 (중괄호 생략 불가, 4줄이라서)
+const userLogin = () => {
+    if (isLogin === true) {
+        return "로그인"
+    } else {
+        return "로그아웃"
+    }
+};
+
+// 3항 연산자 (중괄호 생략 가능, 1줄이라서, return 도 있어서.)
+const userLoginArrow = () => {
+    return isLogin ? "로그인" : "로그아웃";
+};
+
+const userLoginArrowReturn = () => isLogin ? "로그인" : "로그아웃";
+
+// 3배를 계산한다.
+const num = 1;
+const countThriple = (_num) => _num * 3;
+console.log (countThriple(_num));
+
+// 다음은 정말 조심해야 함.
+// 파라메터가 {} 형태라면 반드시 () 필수로 감싸줘야 한다.
+const parseJsonArrow = ({}) => {
+    console.log("실행")
+};
+```
