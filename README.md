@@ -22,6 +22,7 @@ js/
 assets/
 멀티미디어 및 각종 문서, 리소스 등을 관리
 ### 3. 기본 첫 페이지 즉, 홈페이지 파일
+```
 index.html (VSCode 에서 !탭)
 <!DOCTYPE html>
 <html lang="en">
@@ -32,3 +33,4 @@ index.html (VSCode 에서 !탭)
   </head>
   <body></body>
 </html>
+```
