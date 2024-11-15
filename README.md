@@ -266,12 +266,197 @@ function 외부함수() {
 
 ### 3.4. this 요놈.. 오류의 원인이 될 수 있다.
 
-- 글로벌 스코프의 this 는 window
+#### 3.4.1. 글로벌 스코프의 this 는 window
 
 ```js
 console.log("글로벌 this : ", this); // window
 ```
 
-- 화살표 함수 안쪽의 this 는 window 가 아닐 수 있다.
+#### 3.4.2. 화살표 함수 안쪽의 this 는 window 가 아닐 수 있다.
 
-- 일반 함수 안쪽의 this 는 window 가 아닐 수 있다.
+- 글로벌 스코프에 생성된 화살표 함수의 `this` 는 `window`
+- `this로 변수를 참조하면 안된다.` 이유는 window 를 참조하므로
+- 화살표에서는 this 쓰지말자.
+
+```js
+const go = () => {
+  const age = 10;
+  console.log("화살표 this : ", this); //window
+  console.log("화살표 age : ", age); //지역변수
+  console.log("화살표 this.age : ", this.age); //전역변수 age
+};
+
+go();
+```
+
+- `객체`라는 곳에 기능(함수) 즉, `메서드`에 만약 `화살표`로 `this` 를 쓴다면 `window`
+- `this로 변수를 참조하면 안된다.` 이유는 window 를 참조하므로
+- 화살표에서는 this 쓰지말자.
+
+```js
+// 기본 데이터를 묶어서 {} 안에 모아서 관리 할 수 없을까?
+// Object 제 7의 데이터 종류
+const person = {
+  userName: "홍길동", // 속성 (Property)
+  age: 20, // 속성 (Property)
+  korean: true, // 속성 (Property)
+  say: () => {
+    console.log("안녕", this);
+    console.log("안녕", this.userName);
+    console.log("안녕", this.age);
+    console.log("안녕", this.kroean);
+  }, // 행동, 기능 (Method)
+  cry: () => {
+    console.log("ㅠㅠ", this);
+  }, // 행동, 기능 (Method)
+};
+
+console.log(person.userName);
+console.log(person["userName"]);
+person.say();
+```
+
+- 일반 함수 안쪽에 화살표 함수를 중첩해서 사용시 this 는 `window`
+- `this로 변수를 참조하면 안된다.` 이유는 window 를 참조하므로
+- 화살표에서는 this 쓰지말자.
+
+```js
+function go() {
+  const age = 10;
+  const say = () => {
+    const hobby = "축구";
+    console.log(this);
+    console.log(this.age); //undefined
+    console.log(this.hobby); //undefined
+  };
+  say();
+}
+go();
+```
+
+- `비동기 함수`에서의 화살표 함수의 `this` 는 `window`
+- `this로 변수를 참조하면 안된다.` 이유는 window 를 참조하므로
+- 화살표에서는 this 쓰지말자.
+
+```js
+// 시간이 오래 걸리는 작업을 가지고 테스트
+function timer() {
+  let count = 0;
+  // 타이머 함수를 이용해서 오래걸리도록 샘풀
+  // 기본 웹브라우저에 내장 되어 있는 즉, 빌트인 이 되어 있는 함수
+  // setInterval(함수, 간격);
+  setInterval(() => {
+    this.count++; // 오류 ... undefined + 1
+    console.log("안녕 : ", this);
+    console.log("안녕 : ", this.count); // NaN 이 계속 반복
+  }, 1000);
+}
+
+timer();
+```
+
+- 클래스의 메서드, 즉 클래스의 화살표 메서드를 사용시 `this` 는 `window 말고 instance`를 가르킴.
+- this 는 클래스의 `복제본(instance)`을 가르킨다.
+
+```js
+class Student {
+  // new Student() 실행시 자동실행
+  // 객체를 생성하는 함수 : 기본 생성자 함수
+  constructor() {
+    console.log("학생 한 객체 인스턴스를 만들어요.");
+  }
+
+  count = 1;
+
+  say = () => {
+    console.log("클래스로 만들어진 instance : ", this);
+
+    // 예외로 된다.
+    console.log("클래스로 만들어진 instance : ", this.count);
+  };
+}
+
+const st = new Student();
+st.say();
+```
+
+#### 3.4.3. 일반 함수 안쪽의 this 는 window 가 아닐 수 있다.
+
+- 글로벌 영역의 `function` 의 `this` 는 `window`
+
+```js
+function go() {
+  const age = 10;
+  console.log("화살표 this : ", this); //window
+  console.log("화살표 age : ", age); //지역변수
+  console.log("화살표 this.age : ", this.age); //전역변수 age undefined
+}
+
+go();
+```
+
+- `객체`라는 곳에 기능(함수) 즉, `메서드`에 만약 `function`로 `this` 를 쓴다면 `자기자신을 가르킨다. 화살표와 다르다.`
+
+```js
+// 기본 데이터를 묶어서 {} 안에 모아서 관리 할 수 없을까?
+// Object 제 7의 데이터 종류
+const Person = {
+  userName: "홍길동", // 속성 (Property)
+  age: 20, // 속성 (Property)
+  korean: true, // 속성 (Property)
+  say: function () {
+    console.log("안녕", this);
+    console.log("안녕", this.userName);
+    console.log("안녕", this.age);
+    console.log("안녕", this.korean);
+  }, // 행동. 기능 (Method)
+  cry: function () {
+    console.log("ㅠㅠ", this);
+  }, // 행동, 기능(Method)
+};
+
+console.log(Person.userName);
+console.log(Person["userName"]);
+Person.say();
+```
+
+- `비동기 함수`에서의 화살표 함수의 `this` 는 `window`
+- 누가 함수를 call 했는가가 중요하다.
+
+```js
+// 시간이 오래 걸리는 작업을 가지고 테스트
+function timer() {
+  let count = 0;
+  setInterval(function () {
+    // 함수를 실행하는 주인은 window 라서.
+    console.log("안녕 : ", this);
+  }, 1000);
+}
+
+timer();
+```
+
+- 클래스의 메서드, 즉 클래스의 화살표 메서드를 사용시 `this` 는 `window 말고 instance`를 가르킴.
+- this 는 클래스의 `복제본(instance)`을 가르킨다.
+
+```js
+class Student {
+  // new Student() 실행시 자동실행
+  // 객체를 생성하는 함수 : 기본 생성자 함수
+  constructor() {
+    console.log("학생 한 객체 인스턴스를 만들어요.");
+  }
+
+  count = 1;
+
+  say = function () {
+    console.log("클래스로 만들어진 instance : ", this);
+
+    // 예외로 된다.
+    console.log("클래스로 만들어진 instance : ", this.count);
+  };
+}
+
+const st = new Student();
+st.say();
+```
