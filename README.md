@@ -460,3 +460,66 @@ class Student {
 const st = new Student();
 st.say();
 ```
+
+## 4. 콜백 함수(Callback Function)
+- 함수(일반/화살표)를 파라메터로 전달하는 것
+- 파라메터의 값으로 전달되는 함수를 말함.
+- 비동기 즉, 서버 연동(Request, Response)후에 함수실행
+- 이벤트 기반 함수 실행(클릭했을때, html 이 완성되었을 때) 후에 함수실행
+
+### 4.1. 아래 모두 동일합니다.
+- 가능하면 마지막 방식으로 한다.
+
+```js
+function run(함수) {
+  함수();
+}
+
+const say = () => {
+  console.log("say");
+};
+const cry = () => {
+  console.log("ㅠㅠ");
+};
+
+run(say);
+run(cry);
+
+window.addEventListener("", function () {});
+```
+
+```js
+function run(함수) {
+  함수();
+}
+
+run(function () {
+  console.log("say");
+});
+
+run(function () {
+  console.log("ㅠㅠ");
+});
+
+
+window.addEventListener("", function () {});
+```
+
+- 추천
+
+```js
+function run(함수) {
+  함수();
+}
+
+run(()=> {
+  console.log("say");
+});
+
+run( () => {
+  console.log("ㅠㅠ");
+});
+
+
+window.addEventListener("", function () {});
+```
