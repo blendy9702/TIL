@@ -171,10 +171,24 @@ git pull --all
 ## 5. 깃허브 협업하기
 
 ### 5.1. 과정
+
 ```
-팀장은 깃허브 주소를 공개
-팀원은 falk 한다.
-팀원은 clone하고, 본인의 branch를 생성.
-작업 (add .  commit  push)
-팀원은 Pull Request   (PR)  요청
-본인의 branch 제거 후 다시 clone 하기.
+ 팀장이 깃허브 주소를 공개
+ 팀원은 falk 합니다.
+ 팀원은 clone 합니다.
+ 팀원은 본인의 branch 생성합니다.
+ 팀원은 작업 (add .    commit     push)
+ 팀원은 Pull Request   (PR) 요청합니다.
+ 팀장은 PR 을 확인하고 처리 후 회신
+ 팀원 본인의 branch 제거합니다.
+ 팀원은 다시 clone 합니다.
+
+ ============== 프로젝트 끝날 때 까지 반복 합니다.
+ 팀원은 본인의 branch 생성합니다.
+ 팀원은 작업 (add .    commit     push)
+ 팀원은 Pull Request   (PR) 요청합니다.
+ 팀원 본인의 branch 제거합니다.
+ 팀원은 다시 clone 합니다.
+ ==============
+
+```
