@@ -136,3 +136,45 @@ git push origin main
 
 만약 자격 증명 관리에 없으면 자동으로 인증 되는 안내창 출력
 ```
+
+## 4. clone 하기
+
+### 4.1. https 로 클론하기
+
+```
+ git clone 깃허브주소 .   엔터
+```
+
+### 4.2. 전체 branch 클론하기
+
+```
+for branch in $(git branch -r | grep -v '\->'); do
+  git branch --track "${branch#origin/}" "$branch"
+done
+git fetch --all
+git pull --all
+```
+
+### 4.3. branch 확인하기
+
+```
+ git branch 엔터
+ git status 엔터
+```
+
+### 4.4. 특정 branch 작성하기
+
+```
+ git switch 브랜치명
+```
+
+## 5. 깃허브 협업하기
+
+### 5.1. 과정
+```
+팀장은 깃허브 주소를 공개
+팀원은 falk 한다.
+팀원은 clone하고, 본인의 branch를 생성.
+작업 (add .  commit  push)
+팀원은 Pull Request   (PR)  요청
+본인의 branch 제거 후 다시 clone 하기.
